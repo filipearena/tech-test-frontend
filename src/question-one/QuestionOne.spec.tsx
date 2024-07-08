@@ -3,6 +3,7 @@ import { render, fireEvent, screen, act, waitFor } from '@testing-library/react'
 import { QuestionOne } from './QuestionOne'
 import '@testing-library/jest-dom/jest-globals'
 import '@testing-library/jest-dom'
+import { JobWithSearchTerm } from '../common/types'
 
 const mockService = {
   getJobs: jest.fn(() => Promise.resolve([])),
@@ -10,7 +11,7 @@ const mockService = {
   getJobAllocations: jest.fn(() => Promise.resolve([])),
   getActivityAllocations: jest.fn(() => Promise.resolve([])),
   getResources: jest.fn(() => Promise.resolve([])),
-  getJobsWithSearchTerm: jest.fn(() => Promise.resolve([]))
+  getJobsWithSearchTerm: jest.fn((searchTerm: string) => Promise.resolve([] as JobWithSearchTerm[]))
 }
 
 const mockProps = {
@@ -21,7 +22,7 @@ describe('QuestionOne Component', () => {
   beforeEach(() => {
     jest.useFakeTimers() // Use fake timers to control setTimeout in handleChange
     mockService.getJobsWithSearchTerm.mockClear()
-    mockService.getJobsWithSearchTerm.mockImplementation((searchTerm: string) => {
+    mockService.getJobsWithSearchTerm.mockImplementation((searchTerm: string): Promise<JobWithSearchTerm[]> => {
       const mockJobs = [
         {
           name: 'Job A',

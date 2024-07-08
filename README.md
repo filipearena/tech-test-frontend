@@ -44,3 +44,38 @@ Another thing to note is I also decided to not make the filtering of the results
 I then decided to move to the unit testing for question one, creating a few shell it() blocksto decide which scenarios would be important to test.
 A few obvious choices of tests are making usre the component renders correctly, that the search triggers a api call (using jest mocks we can do that without calling the real one) and so on.
 We then add some styles to it, to make it more user friendly and appealing.
+
+## Question Two
+
+This was a bit on an interesting one. Initially I did not fully understood what was being asked, but later on it became clear that it was all about merging data from multiple APIs, manipulating it using a few known javascript operators to get the desired output (stated on the unit test).
+For the foundation of this challenge, it was important to make sure I followed the provided the type to be used for the final object:
+
+```
+interface Allocation {
+  allocType: 'job' | 'activity';
+  name: string;
+  start: string;
+  end: string;
+}
+
+interface ResourceSchedule {
+  resourceName: string;
+  resourceId: number;
+  allocations: Allocation[];
+}
+```
+
+So the first step was to determine the relationship between the sets of data:
+resoucers -> activity allocation -> activity
+resoucers -> job allocation -> job
+
+Assumption: start and end date are always on the same date (only during business hours)
+
+We first start by filtering the activities and jobs to the relevant date (although it may not be necessary given the data already only cointains elements of the specified date), it was still part of the brief.
+Then we mount the data according to the desired format, starting with resources (as the base of everything), then for each resource we get the activity and job allocations and finally match those allocations with the actual activity and job data. Everything done through filters using the necessary IDs and we ultimately map the data to match the allocation type specified.
+Last but not least, we run a simple JSON.stringify to get the blob in the correct shape for the unit test to pass.
+
+One of the challenges here was to not get confused with so many IDs between the objects and to get the types right (decided to join Activity and Job into a new type).
+For some other reason, the IDs for some objects were not matching the specified type in the project, which was strange.
+
+## Question Three
