@@ -33,3 +33,14 @@ Once you have completed all exercises it would be great to see a readme that con
 - [Question 3](./src/question-three/INSTRUCTIONS.md) - Responsive CSS design
 
 Good luck! And if you have any questions, don't hesitate to contact your hiring manager.
+
+# Applicant Approach
+
+## Question One
+
+My idea was to keep this simple by starting with the basics of adding an input (not styling at first) where there would be an event handler listening for changes (onChange). Through that handler, I would be able to set a local state variable to better control the input. Based on the requirement provided we would have to call the API to run the job search after reaching minimun 3 characters on the count, therefore we must add a check for that. However, to make the experience even better, we probably should make use of a debounce mechanism, to avoid hitting the service too often (bad practice). The debounce would allow for the API call to only be triggered after a certain ammount of time has passed after the user last interacted with the input, making the experience the same for him, without smashing the server.
+Furthermore, we have to present a loading state to the user while the search is running, and for that purpose we can introduce a flag that will be true whenever we call the API and false when we get a response (or failure). We then use this flag to show/hide a UI element to indicate something is going on behind the scenes. We also would want to display a message whenever the search came up empty, users hate when a website does not tell them what is going on. For that purpose, I've created another local state variable that stores the flag to whenever the API has been invoked or not, based on that and the fact the jobs list is empty, we can show the empty results string.
+Another thing to note is I also decided to not make the filtering of the results case sensitive, because we don't wan't to force the users to know exaclty when to use lower/upper casing when searching.
+I then decided to move to the unit testing for question one, creating a few shell it() blocksto decide which scenarios would be important to test.
+A few obvious choices of tests are making usre the component renders correctly, that the search triggers a api call (using jest mocks we can do that without calling the real one) and so on.
+We then add some styles to it, to make it more user friendly and appealing.
