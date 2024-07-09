@@ -3,7 +3,8 @@ import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/jest-globals'
 import '@testing-library/jest-dom'
 
-import { JobCard, JobDetails } from './JobCard'
+import { JobCard } from './JobCard'
+import { JobDetails } from '../../common/types'
 
 const fakeJob: JobDetails = {
   id: 1,

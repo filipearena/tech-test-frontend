@@ -1,14 +1,6 @@
 import React from 'react'
 import './JobCard.css'
-
-export interface JobDetails {
-  id: number
-  name: string
-  location: string
-  dateTime: string
-  status: string
-  numAllocations: number
-}
+import { JobDetails } from '../../common/types'
 
 interface JobCardProps {
   job: JobDetails

@@ -41,6 +41,15 @@ export interface Resource {
   name: string
 }
 
+export interface JobDetails {
+  id: number
+  name: string
+  location: string
+  dateTime: string
+  status: string
+  numAllocations: number
+}
+
 export type JobWithSearchTerm = Pick<Job, 'name' | 'start' | 'end'> & { contact: Contact }
 
 export interface IDataService {

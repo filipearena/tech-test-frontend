@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { IDataService } from '../common/types'
+import { IDataService, JobDetails } from '../common/types'
 
 import { SectionGroup } from '../components/section/SectionGroup'
 import { SectionPanel } from '../components/section/SectionPanel'
 
 import './QuestionThree.css'
 import { FormatDate } from '../question-one/helpers'
-import { JobCard, JobDetails } from './JobCard/JobCard'
+import { JobCard } from './JobCard/JobCard'
 import { Header } from './Header'
 
 export const QuestionThree = ({ service }: { service: IDataService }) => {
