@@ -51,21 +51,21 @@ export const QuestionOne = (props: IAppTabContainer) => {
   return (
     <SectionGroup>
       <SectionPanel>
-        <div className="search__container">
+        <div className="search-container">
           <input
             name="search"
             value={searchValue}
             onChange={handleChange}
             placeholder="Search jobs..."
-            className="search__input"
+            className="search-input"
           />
-          <button onClick={clearField} className="clear__button">
+          <button onClick={clearField} className="clear-button">
             Clear
           </button>
         </div>
         {loading && <div className="loader">Loading...</div>}
         {jobs && jobs.length > 0 && (
-          <table className="jobs__table">
+          <table className="jobs-table">
             <thead>
               <tr>
                 <th>Job Name</th>

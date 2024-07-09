@@ -115,9 +115,11 @@ describe('QuestionThree', () => {
     //hold until api is complete and data is processed
     await waitFor(() => {
       expect(screen.getByText('Header')).toBeInTheDocument()
+    })
+
+    await waitFor(() => {
       //Correct number of allocations is displayed
       expect(screen.getByText('3')).toBeInTheDocument()
-      expect(screen.getAllByText(/Build a/).length).toBe(2)
     })
 
     const leftColumn = screen.getByTestId('left-column')

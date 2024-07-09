@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { IDataService, JobDetails } from '../common/types'
 
 import { SectionGroup } from '../components/section/SectionGroup'
@@ -14,7 +14,7 @@ export const QuestionThree = ({ service }: { service: IDataService }) => {
   const rightColumnBoxes = Array.from({ length: 10 }, (_, index) => index + 1)
   const leftPanelCircles = Array.from({ length: 4 }, (_, index) => index + 1)
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       const [jobs, jobAllocations] = await Promise.all([service.getJobs(), service.getJobAllocations()])
       const jobCards: JobDetails[] = jobs.map(job => {
@@ -35,11 +35,11 @@ export const QuestionThree = ({ service }: { service: IDataService }) => {
     } catch (error) {
       console.error('Error fetching data:', error)
     }
-  }
+  }, [service])
 
   useEffect(() => {
     fetchData()
-  }, [])
+  }, [fetchData])
 
   return (
     <SectionGroup>

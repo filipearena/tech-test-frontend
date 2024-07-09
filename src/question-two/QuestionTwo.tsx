@@ -35,7 +35,7 @@ export const QuestionTwo = ({ service }: { service: IDataService }) => {
     })
   }, [])
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       const [jobs, jobAllocations, activities, activityAllocations, resources] = await Promise.all([
         service.getJobs(),
@@ -94,11 +94,11 @@ export const QuestionTwo = ({ service }: { service: IDataService }) => {
     } catch (error) {
       console.error('Error fetching data:', error)
     }
-  }
+  }, [filterForTargetDate, service])
 
   useEffect(() => {
     fetchData()
-  }, [])
+  }, [fetchData])
 
   return (
     <SectionGroup>

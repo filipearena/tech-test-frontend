@@ -89,9 +89,11 @@ The first step for tackling the question three was to understand the UI requirem
 After understanding them, the first step is to come up with the component structure based on the Figma mock, in a way that is reusable and clear. Other than that, we must also define some classes that will reprensent the context of the elements on the screen, so children classes can inherit properties whenever it makes sense.
 One of the important parts is make sure the Header is dynamic, in other words, takes up React children and displays them.
 
+For most of the styling, I've decided to use flexbox as it is a really easy and standard approach in the industry to organise the CSS in a responsive way that works well for all screen sizes, making use of rows, columns etc. In this case I've made the priority the left column in the sense that if ever opened on a smaller screen device, we would never lose visibility of that content (there is a min-width provided). The right column however, can shrink in size (as there is currently nothing there at the moment other than the empty cards). Eveything done accoding to the Figma mocks, using fonts, colours and more directly from there.
+
 I've also decided to create two new components: Header and JobCard.
 The Header component exists so I can easily unit test the children are being properly displayed and it is a reusable and separate component (contextually speaking).
-The JobCard was created so that it can be reused, tested and have its context independent from the main component.
+The JobCard was created so that it can be reused, tested and have its context independent from the main component. This one needed to make use of some additional memoization techniques (useMemo) to again enhance performance and memory consuption, as there where a few functions we could avoid having to recalculate the output.
 
 Each component, including the main questionThree component have had unit tests added to verify the functionality is correct according to the requirements.
 

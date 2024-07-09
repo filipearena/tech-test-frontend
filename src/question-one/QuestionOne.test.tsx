@@ -53,9 +53,7 @@ describe('QuestionOne Component', () => {
   it('changes to input invokes API call', async () => {
     render(<QuestionOne {...mockProps} />)
     const searchInput = screen.getByPlaceholderText('Search jobs...')
-    await act(async () => {
-      fireEvent.change(searchInput, { target: { value: 'job' } })
-    })
+    fireEvent.change(searchInput, { target: { value: 'job' } })
     await waitFor(() => expect(mockService.getJobsWithSearchTerm).toHaveBeenCalledTimes(1))
   })
 
@@ -83,9 +81,7 @@ describe('QuestionOne Component', () => {
         }, 1000) // 1 second delay
       })
     })
-    await act(async () => {
-      render(<QuestionOne {...mockProps} />)
-    })
+    render(<QuestionOne {...mockProps} />)
 
     const searchInput = screen.getByPlaceholderText('Search jobs...')
 
