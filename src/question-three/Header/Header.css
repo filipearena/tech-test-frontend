@@ -1,0 +1,14 @@
+.header {
+  font: Inter;
+  font-weight: 700;
+  size: 24px;
+  line-height: 32px;
+  height: 80px;
+  background-color: #ccc;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  background-color: #007ee5;
+  font-weight: 700;
+  color: white;
+}

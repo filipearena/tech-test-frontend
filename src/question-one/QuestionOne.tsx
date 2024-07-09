@@ -69,8 +69,7 @@ export const QuestionOne = (props: IAppTabContainer) => {
             <thead>
               <tr>
                 <th>Job Name</th>
-                <th>Start Date</th>
-                <th>Finish Date</th>
+                <th>Job Date/Time</th>
                 <th>Contact Name</th>
               </tr>
             </thead>
@@ -78,8 +77,7 @@ export const QuestionOne = (props: IAppTabContainer) => {
               {jobs.map(job => (
                 <tr key={job.name}>
                   <td>{job.name}</td>
-                  <td>{FormatDate(job.start)}</td>
-                  <td>{FormatDate(job.end)}</td>
+                  <td>{FormatDate(job.start, job.end)}</td>
                   <td>{job.contact.name}</td>
                 </tr>
               ))}

@@ -35,16 +35,12 @@
 
   margin: 20px auto;
   max-width: 90%;
-  min-width: 800px;
+  min-width: 600px;
   padding: 20px;
 
   background-color: white;
   box-shadow: 0 1px 6px 0 #d4d7de;
   border-radius: 2px;
-}
-
-.app__content-blank {
-  height: calc(100vh - 92px);
 }
 
 .section__panel {

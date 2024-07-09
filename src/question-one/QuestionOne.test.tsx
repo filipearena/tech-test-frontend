@@ -21,7 +21,6 @@ const mockProps = {
 describe('QuestionOne Component', () => {
   beforeEach(() => {
     jest.useFakeTimers() // Use fake timers to control setTimeout in handleChange
-    mockService.getJobsWithSearchTerm.mockClear()
     mockService.getJobsWithSearchTerm.mockImplementation((searchTerm: string): Promise<JobWithSearchTerm[]> => {
       const mockJobs = [
         {
@@ -42,8 +41,6 @@ describe('QuestionOne Component', () => {
   })
 
   afterEach(() => {
-    jest.runOnlyPendingTimers()
-    jest.useRealTimers()
     jest.clearAllMocks()
   })
 

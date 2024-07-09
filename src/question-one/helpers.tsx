@@ -1,15 +1,9 @@
-export const FormatDate = (isoDateString: string): string => {
-  const date = new Date(isoDateString)
+import { format, parseISO } from 'date-fns'
 
-  const options: Intl.DateTimeFormatOptions = {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: '2-digit',
-    hour12: true,
-    timeZone: 'UTC'
-  }
-
-  return new Intl.DateTimeFormat('en-AU', options).format(date)
+export const FormatDate = (startDate: string, endDate: string): string => {
+  const parsedStart = parseISO(startDate)
+  const parsedEnd = parseISO(endDate)
+  const formattedStartDate = format(parsedStart, 'EEE d MMMM yyyy, h:mmaaa')
+  const formattedEndDate = format(parsedEnd, 'h:mmaaa')
+  return `${formattedStartDate} - ${formattedEndDate}`
 }

@@ -75,7 +75,23 @@ We first start by filtering the activities and jobs to the relevant date (althou
 Then we mount the data according to the desired format, starting with resources (as the base of everything), then for each resource we get the activity and job allocations and finally match those allocations with the actual activity and job data. Everything done through filters using the necessary IDs and we ultimately map the data to match the allocation type specified.
 Last but not least, we run a simple JSON.stringify to get the blob in the correct shape for the unit test to pass.
 
-One of the challenges here was to not get confused with so many IDs between the objects and to get the types right (decided to join Activity and Job into a new type).
-For some other reason, the IDs for some objects were not matching the specified type in the project, which was strange.
+One important aspect of this challenge was to make use we are optimizing the usage of memory with the use of memoization through the usage of useCallback on the filterForTargetDate function, which helps with some performance enhancement by avoiding redundant calculations whenever possible.
+
+One of the concessions was the fact the IDs of some of the models used where not matching the types provided, and therefore for comparisson pursoses when filtering, the method .toString() was used to make sure the IDs where being compared correctly with matching types.
 
 ## Question Three
+
+The first step for tackling the question three was to understand the UI requirements specified in the Instructions file, which would dictate the separation of concerns, context, component structure and more.
+After understanding them, the first step is to come up with the component structure based on the figma mock, in a way that is reusable and clear. Other than that, we must also define some classes that will reprensent the context of the elements on the screen, so children classes can inherit properties whenever it makes sense.
+One of the important parts is make sure the Header is dynamic, in other words, takes up React children and displays them.
+I've also decided to create two new components: Header and JobCard.
+The Header component exists so I can easily unit test the children are being properly displayed.
+The JobCard was created so that it can be reused, tested and have its context independent from the main component.
+Finally, each component, including the main questionThree component have had unit tests added to verify the functionality is correct according to the requirements.
+One of the things I almost missed from the Figma mock, was the job id number with the padding: e.g 1 as 001 and so on.
+
+## Closing Remarks
+
+Given that some of the questions involved date manipulation, comparisson and formatting I've decided to install date-fns, which is a pretty lightweight library that provides some helper functions, making date manipulation much easier. Could have gone with momentjs, but its much more powerful and therefore a lot heavier.
+
+Within the unit tests I've used some jest.fn() mock functions to fake the api calls in order to blackbox the component, guaranteeing the unit test is independant. This also allows for some observability in the sense of knowing when, how and with what the apis where called.
