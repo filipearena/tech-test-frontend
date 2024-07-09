@@ -1,7 +1,7 @@
 .container {
   display: flex;
   height: calc(100vh - 115px);
-  border: 1px solid black;
+  border-top: 1px solid black;
 }
 
 .left-panel {
